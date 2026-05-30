@@ -11,7 +11,9 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://karthikeyankadarla27_db_user:Blog1234@cluster0.n7ks4c1.mongodb.net/?appName=Cluster0")
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch((err) => console.log(err));
 
