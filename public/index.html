@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Platform</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✍️</div>
+    <h1>BlogSphere</h1>
+    <p>Express Ideas • Share Knowledge • Inspire Everyone</p>
+</header>
+
+<div class="container">
+
+<div class="form-box">
+
+<h2>Create Blog Post</h2>
+
+<input
+type="text"
+id="title"
+placeholder="Enter blog title">
+
+<textarea
+id="content"
+rows="6"
+placeholder="Write your blog content"></textarea>
+
+<input
+type="text"
+id="author"
+placeholder="Author Name">
+
+<button class="publish-btn" onclick="publishBlog()">
+    Publish Blog
+</button>
+</div>
+
+<div id="blogs">
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

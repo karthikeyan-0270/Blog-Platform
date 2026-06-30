@@ -3,40 +3,65 @@ const router = express.Router();
 
 const Blog = require("../models/Blog");
 
-// Create Blog
 router.post("/", async (req, res) => {
+
+    console.log("POST /blogs HIT");
+    console.log(req.body);
+
     try {
-        const newBlog = new Blog(req.body);
 
-        const savedBlog = await newBlog.save();
+        const blog = new Blog({
+            title: req.body.title,
+            content: req.body.content,
+            author: req.body.author
+        });
 
-        res.json(savedBlog);
+       console.log("About to save:");
+console.log(blog);
+
+const savedBlog = await blog.save();
+
+console.log("Saved successfully");
+
+        console.log("Saved:", savedBlog);
+
+        return res.status(201).json(savedBlog);
+
     } catch (err) {
-        res.status(500).json(err);
+
+        console.log("POST ERROR");
+        console.log(err);
+
+        return res.status(500).json({
+            message: err.message
+        });
     }
 });
-
-// Get All Blogs
+// ADD THIS HERE 👇
 router.get("/", async (req, res) => {
+
+    console.log("GET /blogs HIT");
+
     try {
+
         const blogs = await Blog.find();
 
-        res.json(blogs);
+        console.log("Blogs:", blogs);
+
+        return res.json(blogs);
+
     } catch (err) {
-        res.status(500).json(err);
+
+        console.log("GET ERROR");
+        console.log(err);
+
+        return res.status(500).json({
+            message: err.message
+        });
+
     }
 });
 
-// ADD THIS HERE 👇
-// GET blog by ID
-router.get("/:id", async (req, res) => {
-    try {
-        const blog = await Blog.findById(req.params.id);
-        res.json(blog);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
 
 // PUT blog by ID
 router.put("/:id", async (req, res) => {
